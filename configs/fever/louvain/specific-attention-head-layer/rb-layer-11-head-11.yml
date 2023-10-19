@@ -1,0 +1,83 @@
+datasets:
+  fever:
+    end: -1
+    file_loc: ${EXPL_INTR_HOME}/data/fever_extended.jsonl
+    id_2_label:
+      0: nei
+      1: refutes
+      2: supports
+    label_2_id:
+      supports: 2
+      nei: 0
+      refutes: 1
+    name: from-annotation
+    phase: test
+    start: 0
+evaluators:
+  auc-comp-hf-phrase-top-k:
+    handler: roberta-base-fever
+    name: auc-comp-hf-phrase
+    perturber: auc-comp-hf-phrase
+    split_explanation_params:
+    - ann
+    - relation
+    - level
+    - label_index
+    top_k: 1
+  auc-suff-hf-phrase-top-k:
+    handler: roberta-base-fever
+    name: auc-suff-hf-phrase
+    perturber: auc-suff-hf-phrase
+    split_explanation_params:
+    - ann
+    - relation
+    - level
+    - label_index
+    top_k: 1
+experiments:
+  louvain_community:
+    dataset: fever
+    evaluators:
+    - auc-suff-hf-phrase-top-k
+    - auc-comp-hf-phrase-top-k
+    exp_type: single
+    explainers:
+      base: louvain_community
+    name: louvain_community
+explainers:
+  louvain_community:
+    graph_extractor_params:
+      name: attention-bipartite-single-layer-single-head
+    handler: roberta-base-fever
+    name: louvain_community
+    scorer: base-attn_weight-phrase
+handlers:
+  roberta-base-fever:
+    data_loader_params:
+      batchsz: 16
+      name: roberta-base-fever
+    head: 11
+    id_2_label:
+      0: nei
+      1: refutes
+      2: supports
+    layer: 11
+    model_params:
+      name: roberta-base-fever
+    name: hf-head-layer
+    tokenizer_params:
+      name: roberta-base-fever
+perturbers:
+  auc-comp-hf-phrase:
+    handler: roberta-base-fever
+    name: auc-comp-hf-phrase
+  auc-suff-hf-phrase:
+    handler: roberta-base-fever
+    name: auc-suff-hf-phrase
+scorers:
+  base:
+    handler: None
+    name: base
+  base-attn_weight-phrase:
+    handler: roberta-base-fever
+    name: base-attn_weight-phrase

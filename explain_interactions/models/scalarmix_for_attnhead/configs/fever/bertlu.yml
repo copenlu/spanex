@@ -1,0 +1,12 @@
+seed: 73
+model:
+  init_params:
+    expl_intr_model: bert-large-uncased-fever
+    num_attn_heads: 16
+hf_tokenizer: bert-large-uncased
+hf_dataset:  fever # can be fever or copenlu/fever_gold_evidence
+train_params:
+  batch_size: 16
+  lr: 5.0e-5
+  epochs: 4
+  output_path: ${EXPL_INTR_HOME}/trained-models/fever/scalar-mix/bertlu-sm

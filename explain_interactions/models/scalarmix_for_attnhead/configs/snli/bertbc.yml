@@ -1,0 +1,12 @@
+seed: 73
+model:
+  init_params:
+    expl_intr_model: bert-base-cased-snli
+    num_attn_heads: 12
+hf_tokenizer: bert-base-cased
+hf_dataset:  snli # can be snli or copenlu/fever_gold_evidence
+train_params:
+  batch_size: 16
+  lr: 5.0e-5
+  epochs: 4
+  output_path: ${EXPL_INTR_HOME}/trained-models/snli/bertbc-sm

@@ -1,0 +1,101 @@
+handlers:
+  roberta-large-fever:
+    name: hf-head-layer-head-importance
+    data_loader_params:
+      name: roberta-large-fever
+      batchsz: 8
+    tokenizer_params:
+      name: roberta-large-fever
+    model_params:
+      name: roberta-large-fever
+    id_2_label:
+      0: nei
+      1: refutes
+      2: supports
+    layer: 23
+    head_importance: -1
+
+datasets:
+  fever:
+    name: from-annotation
+    label: fever
+    phase: test
+    file_loc: ${EXPL_INTR_HOME}/data/fever_extended.jsonl
+    id_2_label:
+      0: nei
+      1: refutes
+      2: supports
+    label_2_id:
+      supports: 2
+      nei: 0
+      refutes: 1
+    start: 0
+    end: -1
+
+scorers:
+  base-attn_weight-phrase:
+    handler: roberta-large-fever
+    name: base-attn_weight-phrase
+
+perturbers:
+  comp-hf-phrase:
+    name: comp-hf-phrase
+    handler: roberta-large-fever
+  suff-hf-phrase:
+    name: suff-hf-phrase
+    handler: roberta-large-fever
+
+explainers:
+  louvain_community:
+    graph_extractor_params:
+      name: attention-bipartite-single-layer-single-head
+    handler: roberta-large-fever
+    name: louvain_community
+    scorer: base-attn_weight-phrase
+
+evaluators:
+  auc-comp-hf-phrase-top-k:
+    name: auc
+    label: auc-comp-hf-phrase-top-k
+    handler: roberta-large-fever
+    perturber: comp-hf-phrase
+    split_explanation_params:
+      - ann
+      - relation
+      - level
+      - label_index
+    top_k: 1
+  auc-suff-hf-phrase-top-k:
+    name: auc
+    label: auc-suff-hf-phrase-top-k
+    handler: roberta-large-fever
+    perturber: suff-hf-phrase
+    split_explanation_params:
+      - ann
+      - relation
+      - level
+      - label_index
+    top_k: 1
+  pha-hf-phrase-top-k:
+    name: pha-hf-phrase
+    label: pha-hf-phrase-top-k
+    handler: roberta-large-fever
+    perturber: suff-hf-phrase
+    split_explanation_params:
+      - ann
+      - relation
+      - level
+      - label_index
+    top_k: 1
+
+experiments:
+  louvain_community:
+    dataset: fever
+    evaluators:
+      - auc-suff-hf-phrase-top-k
+      - auc-comp-hf-phrase-top-k
+      - pha-hf-phrase-top-k
+    exp_type: single
+    explainers:
+      base: louvain_community
+    name: louvain_community

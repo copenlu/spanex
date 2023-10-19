@@ -1,0 +1,101 @@
+handlers:
+  bert-base-cased-snli:
+    name: hf-head-layer-random-head
+    data_loader_params:
+      name: bert-base-cased-snli
+      batchsz: 8
+    tokenizer_params:
+      name: bert-base-cased-snli
+    model_params:
+      name: bert-base-cased-snli
+    id_2_label:
+      0: entailment
+      1: neutral
+      2: contradiction
+    layer: 11
+
+datasets:
+  snli:
+    name: from-annotation
+    label: snli
+    phase: test
+    file_loc: ${EXPL_INTR_HOME}/data/snli_extended.jsonl
+    id_2_label:
+      0: entailment
+      1: neutral
+      2: contradiction
+    label_2_id:
+      contradiction: 2
+      entailment: 0
+      neutral: 1
+    start: 0
+    end: -1
+
+scorers:
+  base-attn_weight-phrase:
+    handler: bert-base-cased-snli
+    name: base-attn_weight-phrase
+
+perturbers:
+  comp-hf-phrase:
+    name: comp-hf-phrase
+    handler: bert-base-cased-snli
+  suff-hf-phrase:
+    name: suff-hf-phrase
+    handler: bert-base-cased-snli
+
+explainers:
+  louvain_community:
+    graph_extractor_params:
+      name: attention-bipartite-single-layer-single-head
+    handler: bert-base-cased-snli
+    name: louvain_community
+    scorer: base-attn_weight-phrase
+
+top_k: &top_k 5
+evaluators:
+  auc-comp-hf-phrase-norm-top-k:
+    name: auc-norm
+    label: auc-comp-hf-phrase-norm-top-k
+    handler: bert-base-cased-snli
+    perturber: comp-hf-phrase
+    split_explanation_params:
+      - ann
+      - relation
+      - level
+      - label_index
+    top_k: *top_k
+  auc-suff-hf-phrase-norm-top-k:
+    name: auc-norm
+    label: auc-suff-hf-phrase-norm-top-k
+    handler: bert-base-cased-snli
+    perturber: suff-hf-phrase
+    split_explanation_params:
+      - ann
+      - relation
+      - level
+      - label_index
+    top_k: *top_k
+  pha-hf-phrase-norm-top-k:
+    name: pha-hf-phrase-norm
+    label: pha-hf-phrase-norm-top-k
+    handler: bert-base-cased-snli
+    perturber: suff-hf-phrase
+    split_explanation_params:
+      - ann
+      - relation
+      - level
+      - label_index
+    top_k: *top_k
+
+experiments:
+  louvain_community-norm:
+    dataset: snli
+    evaluators:
+      - auc-suff-hf-phrase-norm-top-k
+      - auc-comp-hf-phrase-norm-top-k
+      - pha-hf-phrase-norm-top-k
+    exp_type: single
+    explainers:
+      base: louvain_community
+    name: &explainer_name louvain_community-norm

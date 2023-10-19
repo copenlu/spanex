@@ -1,0 +1,329 @@
+{
+  "instance_idx": "e581869db4adf444c530284981531780",
+  "expl_tokens": [],
+  "expl_phrases": [
+    {
+      "instance_idx": "e581869db4adf444c530284981531780",
+      "score": 0.05019454545739185,
+      "part1": {
+        "text": "[",
+        "start_token_index": 0,
+        "end_token_index": 0
+      },
+      "part2": {
+        "text": "Kareena",
+        "start_token_index": 0,
+        "end_token_index": 0
+      },
+      "level": "NA",
+      "relation": "NA",
+      "annotator": "NA"
+    },
+    {
+      "instance_idx": "e581869db4adf444c530284981531780",
+      "score": 0.00011248325245105661,
+      "part1": {
+        "text": "initial",
+        "start_token_index": 7,
+        "end_token_index": 7
+      },
+      "part2": {
+        "text": "Kapoor",
+        "start_token_index": 1,
+        "end_token_index": 1
+      },
+      "level": "NA",
+      "relation": "NA",
+      "annotator": "NA"
+    },
+    {
+      "instance_idx": "e581869db4adf444c530284981531780",
+      "score": 0.001160538464318961,
+      "part1": {
+        "text": ",",
+        "start_token_index": 20,
+        "end_token_index": 20
+      },
+      "part2": {
+        "text": "Kapoor",
+        "start_token_index": 1,
+        "end_token_index": 1
+      },
+      "level": "NA",
+      "relation": "NA",
+      "annotator": "NA"
+    },
+    {
+      "instance_idx": "e581869db4adf444c530284981531780",
+      "score": 0.0026354012079536915,
+      "part1": {
+        "text": "success",
+        "start_token_index": 8,
+        "end_token_index": 8
+      },
+      "part2": {
+        "text": "was",
+        "start_token_index": 2,
+        "end_token_index": 2
+      },
+      "level": "NA",
+      "relation": "NA",
+      "annotator": "NA"
+    },
+    {
+      "instance_idx": "e581869db4adf444c530284981531780",
+      "score": 0.004139962024055421,
+      "part1": {
+        "text": "commercial",
+        "start_token_index": 15,
+        "end_token_index": 15
+      },
+      "part2": {
+        "text": "was",
+        "start_token_index": 2,
+        "end_token_index": 2
+      },
+      "level": "NA",
+      "relation": "NA",
+      "annotator": "NA"
+    },
+    {
+      "instance_idx": "e581869db4adf444c530284981531780",
+      "score": 0.0028089357365388423,
+      "part1": {
+        "text": "roles",
+        "start_token_index": 19,
+        "end_token_index": 19
+      },
+      "part2": {
+        "text": "was",
+        "start_token_index": 2,
+        "end_token_index": 2
+      },
+      "level": "NA",
+      "relation": "NA",
+      "annotator": "NA"
+    },
+    {
+      "instance_idx": "e581869db4adf444c530284981531780",
+      "score": 8.054988120420603e-05,
+      "part1": {
+        "text": "reviews",
+        "start_token_index": 25,
+        "end_token_index": 25
+      },
+      "part2": {
+        "text": "was",
+        "start_token_index": 2,
+        "end_token_index": 2
+      },
+      "level": "NA",
+      "relation": "NA",
+      "annotator": "NA"
+    },
+    {
+      "instance_idx": "e581869db4adf444c530284981531780",
+      "score": 0.00013743117597186938,
+      "part1": {
+        "text": "Kapoor",
+        "start_token_index": 4,
+        "end_token_index": 4
+      },
+      "part2": {
+        "text": "a",
+        "start_token_index": 3,
+        "end_token_index": 3
+      },
+      "level": "NA",
+      "relation": "NA",
+      "annotator": "NA"
+    },
+    {
+      "instance_idx": "e581869db4adf444c530284981531780",
+      "score": 0.001773607924405951,
+      "part1": {
+        "text": "Kapoor",
+        "start_token_index": 4,
+        "end_token_index": 4
+      },
+      "part2": {
+        "text": "failure",
+        "start_token_index": 5,
+        "end_token_index": 5
+      },
+      "level": "NA",
+      "relation": "NA",
+      "annotator": "NA"
+    },
+    {
+      "instance_idx": "e581869db4adf444c530284981531780",
+      "score": 0.052772854221984744,
+      "part1": {
+        "text": "This",
+        "start_token_index": 6,
+        "end_token_index": 6
+      },
+      "part2": {
+        "text": "a",
+        "start_token_index": 3,
+        "end_token_index": 3
+      },
+      "level": "NA",
+      "relation": "NA",
+      "annotator": "NA"
+    },
+    {
+      "instance_idx": "e581869db4adf444c530284981531780",
+      "score": 5.3614253374689724e-05,
+      "part1": {
+        "text": "This",
+        "start_token_index": 6,
+        "end_token_index": 6
+      },
+      "part2": {
+        "text": "failure",
+        "start_token_index": 5,
+        "end_token_index": 5
+      },
+      "level": "NA",
+      "relation": "NA",
+      "annotator": "NA"
+    },
+    {
+      "instance_idx": "e581869db4adf444c530284981531780",
+      "score": 0.017329516616882756,
+      "part1": {
+        "text": "was followed by a series of",
+        "start_token_index": 9,
+        "end_token_index": 14
+      },
+      "part2": {
+        "text": "a",
+        "start_token_index": 3,
+        "end_token_index": 3
+      },
+      "level": "NA",
+      "relation": "NA",
+      "annotator": "NA"
+    },
+    {
+      "instance_idx": "e581869db4adf444c530284981531780",
+      "score": 0.0002194798935496086,
+      "part1": {
+        "text": "was followed by a series of",
+        "start_token_index": 9,
+        "end_token_index": 14
+      },
+      "part2": {
+        "text": "failure",
+        "start_token_index": 5,
+        "end_token_index": 5
+      },
+      "level": "NA",
+      "relation": "NA",
+      "annotator": "NA"
+    },
+    {
+      "instance_idx": "e581869db4adf444c530284981531780",
+      "score": 0.006742668823183824,
+      "part1": {
+        "text": "failures and repetitive",
+        "start_token_index": 16,
+        "end_token_index": 18
+      },
+      "part2": {
+        "text": "a",
+        "start_token_index": 3,
+        "end_token_index": 3
+      },
+      "level": "NA",
+      "relation": "NA",
+      "annotator": "NA"
+    },
+    {
+      "instance_idx": "e581869db4adf444c530284981531780",
+      "score": 0.015602428595258289,
+      "part1": {
+        "text": "failures and repetitive",
+        "start_token_index": 16,
+        "end_token_index": 18
+      },
+      "part2": {
+        "text": "failure",
+        "start_token_index": 5,
+        "end_token_index": 5
+      },
+      "level": "NA",
+      "relation": "NA",
+      "annotator": "NA"
+    },
+    {
+      "instance_idx": "e581869db4adf444c530284981531780",
+      "score": 0.009809297249603333,
+      "part1": {
+        "text": "which garnered her negative",
+        "start_token_index": 21,
+        "end_token_index": 24
+      },
+      "part2": {
+        "text": "a",
+        "start_token_index": 3,
+        "end_token_index": 3
+      },
+      "level": "NA",
+      "relation": "NA",
+      "annotator": "NA"
+    },
+    {
+      "instance_idx": "e581869db4adf444c530284981531780",
+      "score": 0.002034971764317106,
+      "part1": {
+        "text": "which garnered her negative",
+        "start_token_index": 21,
+        "end_token_index": 24
+      },
+      "part2": {
+        "text": "failure",
+        "start_token_index": 5,
+        "end_token_index": 5
+      },
+      "level": "NA",
+      "relation": "NA",
+      "annotator": "NA"
+    },
+    {
+      "instance_idx": "e581869db4adf444c530284981531780",
+      "score": 0.01760935452512058,
+      "part1": {
+        "text": "source :",
+        "start_token_index": 1,
+        "end_token_index": 2
+      },
+      "part2": {
+        "text": "commercial",
+        "start_token_index": 4,
+        "end_token_index": 4
+      },
+      "level": "NA",
+      "relation": "NA",
+      "annotator": "NA"
+    },
+    {
+      "instance_idx": "e581869db4adf444c530284981531780",
+      "score": 0.006234606262296438,
+      "part1": {
+        "text": "]",
+        "start_token_index": 5,
+        "end_token_index": 5
+      },
+      "part2": {
+        "text": "commercial",
+        "start_token_index": 4,
+        "end_token_index": 4
+      },
+      "level": "NA",
+      "relation": "NA",
+      "annotator": "NA"
+    }
+  ]
+}

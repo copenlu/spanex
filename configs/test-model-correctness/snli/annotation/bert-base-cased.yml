@@ -1,0 +1,30 @@
+#dataset:
+#  name: snli-hfd
+#  id_2_label:
+#    0: entailment
+#    1: neutral
+#    2: contradiction
+#  phase: test
+#  start: 0
+#  end: -1
+#  randomize: false
+
+dataset:
+  name: from-annotation
+  phase: test
+  file_loc: ${EXPL_INTR_HOME}/data/snli_extended.jsonl
+  id_2_label:
+    0: entailment
+    1: neutral
+    2: contradiction
+  label_2_id:
+    contradiction: 2
+    entailment: 0
+    neutral: 1
+  start: 0
+  end: -1
+
+data_loader: bert-base-cased-snli
+tokenizer: bert-base-cased-snli
+model: bert-base-cased-snli
+handler: hf

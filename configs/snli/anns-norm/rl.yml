@@ -1,0 +1,101 @@
+handlers:
+  roberta-large-snli:
+    name: hf
+    data_loader_params:
+      name: roberta-large-snli
+      batchsz: 16
+    tokenizer_params:
+      name: roberta-large-snli
+    model_params:
+      name: roberta-large-snli
+    id_2_label:
+      0: entailment
+      1: neutral
+      2: contradiction
+
+datasets:
+  snli:
+    name: from-annotation
+    label: snli
+    phase: test
+    file_loc: ${EXPL_INTR_HOME}/data/snli_extended.jsonl
+    id_2_label:
+      0: entailment
+      1: neutral
+      2: contradiction
+    label_2_id:
+      contradiction: 2
+      neutral: 1
+      entailment: 0
+    start: 0
+    end: -1
+
+scorers:
+  base:
+    name: base
+    handler: None
+
+perturbers:
+  comp-hf-phrase:
+    name: comp-hf-phrase
+    handler: roberta-large-snli
+  suff-hf-phrase:
+    name: suff-hf-phrase
+    handler: roberta-large-snli
+
+explainers:
+  annotation:
+    name: annotation
+    scorer: base
+    handler: roberta-large-snli
+    expl_file: ${EXPL_INTR_HOME}/data/snli_extended.jsonl
+    labels:
+      entailment: 0
+      neutral: 1
+      contradiction: 2
+
+evaluators:
+  auc-comp-hf-phrase-norm:
+    name: auc-norm
+    label: auc-comp-hf-phrase-norm
+    handler: roberta-large-snli
+    perturber: comp-hf-phrase
+    split_explanation_params:
+      - ann
+      - relation
+      - level
+      - label_index
+
+  auc-suff-hf-phrase-norm:
+    name: auc-norm
+    label: auc-suff-hf-phrase-norm
+    handler: roberta-large-snli
+    perturber: suff-hf-phrase
+    split_explanation_params:
+      - ann
+      - relation
+      - level
+      - label_index
+
+  pha-hf-phrase-norm:
+    name: pha-hf-phrase-norm
+    label: pha-hf-phrase-norm
+    handler: roberta-large-snli
+    perturber: suff-hf-phrase
+    split_explanation_params:
+      - ann
+      - relation
+      - level
+      - label_index
+
+experiments:
+  annotation-norm:
+    name: annotation-norm
+    dataset: snli
+    exp_type: single
+    explainers:
+      base: annotation
+    evaluators:
+      - auc-suff-hf-phrase-norm
+      - auc-comp-hf-phrase-norm
+      - pha-hf-phrase-norm

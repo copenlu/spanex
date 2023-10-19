@@ -1,0 +1,104 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  0%|▎                                                                                           | 504/137344 [01:58<8:57:26,  4.24it/s]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  1%|▍                                                                                           | 717/137344 [02:48<8:54:55,  4.26it/s]Traceback (most recent call last):
+  File "train.py", line 125, in <module>
+    trainer.train()
+  File "/Users/srchoud/miniforge3/envs/explintr/lib/python3.8/site-packages/transformers/trainer.py", line 1374, in train
+    for step, inputs in enumerate(epoch_iterator):
+  File "/Users/srchoud/miniforge3/envs/explintr/lib/python3.8/site-packages/torch/utils/data/dataloader.py", line 521, in __next__
+    data = self._next_data()
+  File "/Users/srchoud/miniforge3/envs/explintr/lib/python3.8/site-packages/torch/utils/data/dataloader.py", line 561, in _next_data
+    data = self._dataset_fetcher.fetch(index)  # may raise StopIteration
+  File "/Users/srchoud/miniforge3/envs/explintr/lib/python3.8/site-packages/torch/utils/data/_utils/fetch.py", line 49, in fetch
+    data = [self.dataset[idx] for idx in possibly_batched_index]
+  File "/Users/srchoud/miniforge3/envs/explintr/lib/python3.8/site-packages/torch/utils/data/_utils/fetch.py", line 49, in <listcomp>
+    data = [self.dataset[idx] for idx in possibly_batched_index]
+  File "/Users/srchoud/miniforge3/envs/explintr/lib/python3.8/site-packages/datasets/arrow_dataset.py", line 2165, in __getitem__
+    return self._getitem(
+  File "/Users/srchoud/miniforge3/envs/explintr/lib/python3.8/site-packages/datasets/arrow_dataset.py", line 2149, in _getitem
+    pa_subtable = query_table(self._data, key, indices=self._indices if self._indices is not None else None)
+  File "/Users/srchoud/miniforge3/envs/explintr/lib/python3.8/site-packages/datasets/formatting/formatting.py", line 455, in query_table
+    def query_table(
+KeyboardInterrupt

@@ -1,0 +1,103 @@
+handlers:
+  roberta-base-snli:
+    name: hf-head-importance-scalar-mix
+    data_loader_params:
+      name: roberta-base-snli
+      batchsz: 8
+    tokenizer_params:
+      name: roberta-base-snli
+    model_params:
+      name: roberta-base-snli-scalar-mix
+      base_model_name: roberta-base-snli
+      num_attn_heads: 12
+    id_2_label:
+      0: entailment
+      1: neutral
+      2: contradiction
+    layer: 11
+    head_importance: -1
+
+datasets:
+  snli:
+    name: from-annotation
+    label: snli
+    phase: test
+    file_loc: ${EXPL_INTR_HOME}/data/snli_extended.jsonl
+    id_2_label:
+      0: entailment
+      1: neutral
+      2: contradiction
+    label_2_id:
+      contradiction: 2
+      entailment: 0
+      neutral: 1
+    start: 0
+    end: -1
+
+scorers:
+  base-attn_weight-phrase:
+    handler: roberta-base-snli
+    name: base-attn_weight-phrase
+
+perturbers:
+  comp-hf-phrase:
+    name: comp-hf-phrase
+    handler: roberta-base-snli
+  suff-hf-phrase:
+    name: suff-hf-phrase
+    handler: roberta-base-snli
+
+explainers:
+  louvain_community:
+    graph_extractor_params:
+      name: attention-bipartite-single-layer-single-head
+    handler: roberta-base-snli
+    name: louvain_community
+    scorer: base-attn_weight-phrase
+
+evaluators:
+  auc-comp-hf-phrase-top-k:
+    name: auc
+    label: auc-comp-hf-phrase-top-k
+    handler: roberta-base-snli
+    perturber: comp-hf-phrase
+    split_explanation_params:
+      - ann
+      - relation
+      - level
+      - label_index
+    top_k: 1
+  auc-suff-hf-phrase-top-k:
+    name: auc
+    label: auc-suff-hf-phrase-top-k
+    handler: roberta-base-snli
+    perturber: suff-hf-phrase
+    split_explanation_params:
+      - ann
+      - relation
+      - level
+      - label_index
+    top_k: 1
+  pha-hf-phrase-top-k:
+    name: pha-hf-phrase
+    label: pha-hf-phrase-top-k
+    handler: roberta-base-snli
+    perturber: suff-hf-phrase
+    split_explanation_params:
+      - ann
+      - relation
+      - level
+      - label_index
+    top_k: 1
+
+experiments:
+  louvain_community:
+    dataset: snli
+    evaluators:
+      - auc-suff-hf-phrase-top-k
+      - auc-comp-hf-phrase-top-k
+      - pha-hf-phrase-top-k
+    exp_type: single
+    explainers:
+      base: louvain_community
+    name: louvain_community

@@ -1,0 +1,37 @@
+{
+    "os": "macOS-13.2.1-arm64-arm-64bit",
+    "python": "3.8.6",
+    "heartbeatAt": "2023-03-02T03:18:20.290349",
+    "startedAt": "2023-03-02T03:18:19.769046",
+    "docker": null,
+    "cuda": null,
+    "args": [
+        "--config_file",
+        "configs/snli/bertsmall.yml"
+    ],
+    "state": "running",
+    "program": "train.py",
+    "codePath": "explain_interactions/models/scalarmix_for_attnhead/train.py",
+    "git": {
+        "remote": "git@github.com:sagnik/explinteractions.git",
+        "commit": "7e4af2fcfb8600955a2514d95bf0372fdf1b9e65"
+    },
+    "email": "sagnikrayc@gmail.com",
+    "root": "/Users/srchoud/Dropbox (University of Michigan)/explinteractions",
+    "host": "msla0665.local",
+    "username": "srchoud",
+    "executable": "/Users/srchoud/miniforge3/envs/explintr/bin/python",
+    "cpu_count": 8,
+    "cpu_count_logical": 8,
+    "disk": {
+        "total": 460.4317207336426,
+        "used": 8.32712173461914
+    },
+    "gpuapple": {
+        "type": "arm",
+        "vendor": "Apple"
+    },
+    "memory": {
+        "total": 16.0
+    }
+}

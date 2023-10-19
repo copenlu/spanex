@@ -1,0 +1,31 @@
+#dataset:
+#  name: fever-copenlu-hf
+#  id_2_label:
+#    0: "SUPPORTS"
+#    1: "REFUTES"
+#    2: "NOT ENOUGH INFO"
+#  phase: test
+#  start: 0
+#  end: -1
+#  randomize: false
+#  random_seed: 30
+
+dataset:
+  name: from-annotation
+  phase: test
+  file_loc: ${EXPL_INTR_HOME}/data/fever_extended.jsonl
+  id_2_label:
+    0: supports
+    1: refutes
+    2: nei
+  label_2_id:
+    supports: 0
+    refutes: 1
+    nei: 2
+  start: 0
+  end: -1
+
+data_loader: bert-base-uncased-fever
+tokenizer: bert-base-uncased-fever
+model: bert-base-uncased-fever
+handler: hf

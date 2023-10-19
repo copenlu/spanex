@@ -1,0 +1,102 @@
+handlers:
+  bert-large-uncased-fever:
+    name: hf-head-layer-random-head
+    data_loader_params:
+      name: bert-large-uncased-fever
+      batchsz: 8
+    tokenizer_params:
+       name: &model bert-large-uncased-fever
+    model_params:
+      name: bert-large-uncased-fever
+    id_2_label:
+      0: nei
+      1: refutes
+      2: supports
+    layer: 23
+
+datasets:
+  fever:
+    name: from-annotation
+    label: fever
+    phase: test
+    file_loc: ${EXPL_INTR_HOME}/data/fever_extended.jsonl
+    id_2_label:
+      0: nei
+      1: refutes
+      2: supports
+    label_2_id:
+      supports: 2
+      nei: 0
+      refutes: 1
+    start: 0
+    end: -1
+
+scorers:
+  base-attn_weight-phrase:
+    handler: bert-large-uncased-fever
+    name: base-attn_weight-phrase
+
+perturbers:
+  comp-hf-phrase:
+    name: comp-hf-phrase
+    handler: bert-large-uncased-fever
+  suff-hf-phrase:
+    name: suff-hf-phrase
+    handler: bert-large-uncased-fever
+
+explainers:
+  louvain_community:
+    graph_extractor_params:
+      name: attention-bipartite-single-layer-single-head
+    handler: bert-large-uncased-fever
+    name: louvain_community
+    scorer: base-attn_weight-phrase
+
+top_k: &top_k 3
+evaluators:
+  auc-comp-hf-phrase-norm-top-k:
+    name: auc-norm
+    label: auc-comp-hf-phrase-norm-top-k
+    handler: bert-large-uncased-fever
+    perturber: comp-hf-phrase
+    split_explanation_params:
+      - ann
+      - relation
+      - level
+      - label_index
+    top_k: *top_k
+  auc-suff-hf-phrase-norm-top-k:
+    name: auc-norm
+    label: auc-suff-hf-phrase-norm-top-k
+    handler: bert-large-uncased-fever
+    perturber: suff-hf-phrase
+    split_explanation_params:
+      - ann
+      - relation
+      - level
+      - label_index
+    top_k: *top_k
+  pha-hf-phrase-norm-top-k:
+    name: pha-hf-phrase-norm
+    label: pha-hf-phrase-norm-top-k
+    handler: bert-large-uncased-fever
+    perturber: suff-hf-phrase
+    split_explanation_params:
+      - ann
+      - relation
+      - level
+      - label_index
+    top_k: *top_k
+
+experiments:
+  louvain_community-norm:
+    dataset: fever
+    evaluators:
+      - auc-suff-hf-phrase-norm-top-k
+      - auc-comp-hf-phrase-norm-top-k
+      - pha-hf-phrase-norm-top-k
+    exp_type: single
+    explainers:
+      base: louvain_community
+    name: &explainer_name louvain_community-norm
+    expl_save_loc: !join ["${EXPL_INTR_HOME}/explanations/", *explainer_name, -, top-k, -, *top_k, /, *model, .jsonl]
